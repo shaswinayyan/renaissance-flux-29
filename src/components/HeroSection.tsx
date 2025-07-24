@@ -7,9 +7,12 @@ import heroImage from "@/assets/hero-abstract.jpg";
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
+    // Staggered animation entrance
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    const loadTimer = setTimeout(() => setIsLoaded(true), 600);
     
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -23,6 +26,7 @@ const HeroSection = () => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
       clearTimeout(timer);
+      clearTimeout(loadTimer);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
@@ -119,20 +123,29 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* Enhanced Scroll Indicator */}
           <div className={cn(
-            "transition-all duration-1000 ease-out delay-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            "transition-all duration-1000 ease-out delay-1000",
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <button
               onClick={scrollToNext}
-              className="group flex flex-col items-center gap-3 text-muted-foreground hover:text-accent transition-all duration-500"
+              className="group relative flex flex-col items-center gap-4 text-muted-foreground hover:text-accent transition-all duration-700 hover:scale-105"
             >
-              <span className="text-sm font-medium tracking-wide">Discover More</span>
+              <span className="text-sm font-medium tracking-wide uppercase">Discover More</span>
               <div className="relative flex items-center justify-center">
-                <div className="absolute w-10 h-10 border border-accent/10 rounded-full group-hover:border-accent/30 transition-colors duration-500" />
-                <div className="absolute w-8 h-8 border border-accent/20 rounded-full animate-pulse" />
-                <ChevronDown className="w-5 h-5 animate-bounce group-hover:translate-y-1 group-hover:scale-110 transition-all duration-300" />
+                {/* Outer Ring - Animated */}
+                <div className="absolute w-12 h-12 border border-accent/10 rounded-full group-hover:border-accent/40 group-hover:scale-110 transition-all duration-700" />
+                {/* Middle Ring - Pulsing */}
+                <div className="absolute w-10 h-10 border border-accent/20 rounded-full animate-pulse group-hover:border-accent/50 transition-colors duration-500" />
+                {/* Inner Ring - Responsive */}
+                <div className="absolute w-8 h-8 border border-accent/30 rounded-full group-hover:border-accent/60 group-hover:scale-95 transition-all duration-500" />
+                {/* Center Icon */}
+                <div className="relative">
+                  <ChevronDown className="w-5 h-5 animate-bounce group-hover:translate-y-1 group-hover:scale-110 transition-all duration-300" />
+                </div>
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 rounded-full bg-accent/5 scale-0 group-hover:scale-100 transition-transform duration-500" />
               </div>
             </button>
           </div>

@@ -149,22 +149,24 @@
 }
 
 @layer components {
-  /* Hero Typography */
+  /* Enhanced Mobile-First Typography */
   .hero-title {
-    @apply font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-none;
+    @apply font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-none;
+    line-height: 0.85;
   }
   
   .hero-subtitle {
-    @apply font-body text-base sm:text-lg md:text-xl font-light tracking-wide;
+    @apply font-body text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide;
   }
   
-  /* Academic Section Headers */
+  /* Responsive Section Headers */
   .section-title {
-    @apply font-heading text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight;
+    @apply font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight;
+    line-height: 1.1;
   }
   
   .section-subtitle {
-    @apply font-body text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed;
+    @apply font-body text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed;
   }
   
   /* Button Variants */
@@ -182,32 +184,70 @@
     @apply text-royal-foreground;
   }
   
-  /* Interactive Elements */
+  /* Enhanced Interactive Elements - Mobile Optimized */
   .card-elegant {
-    @apply bg-card rounded-2xl p-6 shadow-elegant transition-all duration-300 hover:shadow-hover hover:-translate-y-1;
+    @apply bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-elegant transition-all duration-500 hover:shadow-hover;
+    will-change: transform, box-shadow;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .card-elegant:hover {
+    transform: translate3d(0, -8px, 0) scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    .card-elegant:hover {
+      transform: translate3d(0, -4px, 0) scale(1.01);
+    }
   }
   
   .nav-link {
     @apply relative font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:text-accent hover:after:w-full;
   }
   
-  /* Scroll Animations */
+  /* Enhanced Scroll Animations - GPU Accelerated */
   .reveal-up {
-    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+    @apply opacity-0 translate-y-12 transition-all duration-800 ease-out;
     will-change: transform, opacity;
+    transform: translate3d(0, 48px, 0);
   }
   
   .reveal-up.in-view {
     @apply opacity-100 translate-y-0;
+    transform: translate3d(0, 0, 0);
   }
 
   .reveal-scale {
-    @apply opacity-0 scale-95 transition-all duration-600 ease-out;
+    @apply opacity-0 scale-90 transition-all duration-700 ease-out;
     will-change: transform, opacity;
+    transform: translate3d(0, 0, 0) scale(0.9);
   }
   
   .reveal-scale.in-view {
     @apply opacity-100 scale-100;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .reveal-slide-left {
+    @apply opacity-0 translate-x-12 transition-all duration-800 ease-out;
+    will-change: transform, opacity;
+    transform: translate3d(48px, 0, 0);
+  }
+  
+  .reveal-slide-left.in-view {
+    @apply opacity-100 translate-x-0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .reveal-slide-right {
+    @apply opacity-0 -translate-x-12 transition-all duration-800 ease-out;
+    will-change: transform, opacity;
+    transform: translate3d(-48px, 0, 0);
+  }
+  
+  .reveal-slide-right.in-view {
+    @apply opacity-100 translate-x-0;
+    transform: translate3d(0, 0, 0);
   }
   
   /* Geometric Patterns */

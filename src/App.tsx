@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import Navigation from "./components/Navigation";
 import Preloader from "./components/Preloader";
 import Index from "./pages/Index";
@@ -18,11 +19,19 @@ const queryClient = new QueryClient();
 
 function AppContent() {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const location = useLocation();
 
   const handlePreloaderComplete = () => {
     setIsInitialLoading(false);
   };
+
+  // Enhanced page transition effect
+  useEffect(() => {
+    setIsTransitioning(true);
+    const timer = setTimeout(() => setIsTransitioning(false), 150);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   if (isInitialLoading && location.pathname === "/") {
     return <Preloader onComplete={handlePreloaderComplete} />;
@@ -31,7 +40,10 @@ function AppContent() {
   return (
     <>
       <Navigation />
-      <main className="transition-opacity duration-300 ease-out">
+      <main className={cn(
+        "transition-all duration-500 ease-out",
+        isTransitioning ? "opacity-95 scale-[0.99]" : "opacity-100 scale-100"
+      )}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
