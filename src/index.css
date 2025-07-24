@@ -207,7 +207,7 @@
   
   /* Enhanced Scroll Animations - GPU Accelerated */
   .reveal-up {
-    @apply opacity-0 translate-y-12 transition-all duration-800 ease-out;
+    @apply opacity-0 translate-y-12 transition-all duration-700 ease-out;
     will-change: transform, opacity;
     transform: translate3d(0, 48px, 0);
   }
@@ -229,7 +229,7 @@
   }
 
   .reveal-slide-left {
-    @apply opacity-0 translate-x-12 transition-all duration-800 ease-out;
+    @apply opacity-0 translate-x-12 transition-all duration-700 ease-out;
     will-change: transform, opacity;
     transform: translate3d(48px, 0, 0);
   }
@@ -240,7 +240,7 @@
   }
 
   .reveal-slide-right {
-    @apply opacity-0 -translate-x-12 transition-all duration-800 ease-out;
+    @apply opacity-0 -translate-x-12 transition-all duration-700 ease-out;
     will-change: transform, opacity;
     transform: translate3d(-48px, 0, 0);
   }
