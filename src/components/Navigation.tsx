@@ -48,7 +48,7 @@ const Navigation = () => {
             to="/"
             className="font-heading text-xl lg:text-2xl font-medium tracking-tight hover:text-accent transition-colors duration-300"
           >
-            Shaswin Ayyan
+            SA
           </Link>
 
           {/* Desktop Navigation */}

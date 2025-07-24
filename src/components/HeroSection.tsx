@@ -123,9 +123,9 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Enhanced Scroll Indicator */}
+          {/* Enhanced Scroll Indicator - Centered */}
           <div className={cn(
-            "transition-all duration-1000 ease-out delay-1000",
+            "flex justify-center transition-all duration-1000 ease-out delay-1000",
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <button
