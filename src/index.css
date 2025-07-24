@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Renaissance Portfolio Design System - Academic Prestige meets Artistic Futurism */
+
+@layer base {
+  :root {
+    /* Core Background & Foreground */
+    --background: 28 25% 97%;
+    --foreground: 0 0% 8%;
+    
+    /* Card System */
+    --card: 30 20% 99%;
+    --card-foreground: 0 0% 8%;
+    
+    /* Popover */
+    --popover: 30 20% 99%;
+    --popover-foreground: 0 0% 8%;
+    
+    /* Primary - Rich Academic Black */
+    --primary: 0 0% 8%;
+    --primary-foreground: 28 25% 97%;
+    
+    /* Secondary - Warm Stone */
+    --secondary: 45 15% 88%;
+    --secondary-foreground: 0 0% 8%;
+    
+    /* Muted - Elegant Neutral */
+    --muted: 40 10% 92%;
+    --muted-foreground: 0 0% 45%;
+    
+    /* Accent - Oxford Gold */
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 8%;
+    
+    /* Royal Blue for Academic Touch */
+    --royal: 220 91% 28%;
+    --royal-foreground: 28 25% 97%;
+    
+    /* Destructive */
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 28 25% 97%;
+    
+    /* Borders & Inputs */
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 43 74% 49%;
+    
+    /* Design System Tokens */
+    --radius: 0.75rem;
+    
+    /* Typography Scale */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Custom Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(40 20% 95%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(38 65% 55%) 100%);
+    --gradient-royal: linear-gradient(135deg, hsl(var(--royal)) 0%, hsl(215 80% 35%) 100%);
+    
+    /* Shadows */
+    --shadow-elegant: 0 4px 24px -2px hsl(var(--primary) / 0.08);
+    --shadow-hover: 0 8px 32px -4px hsl(var(--primary) / 0.12);
+    --shadow-gold: 0 8px 32px -8px hsl(var(--accent) / 0.25);
+    
+    /* Animation Timing */
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-spring: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Theme - Sophisticated Academic Night Mode */
+    --background: 0 0% 4%;
+    --foreground: 28 25% 97%;
+    
+    --card: 0 0% 6%;
+    --card-foreground: 28 25% 97%;
+    
+    --popover: 0 0% 6%;
+    --popover-foreground: 28 25% 97%;
+    
+    --primary: 28 25% 97%;
+    --primary-foreground: 0 0% 8%;
+    
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 28 25% 97%;
+    
+    --muted: 0 0% 10%;
+    --muted-foreground: 40 5% 64%;
+    
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 8%;
+    
+    --royal: 220 91% 35%;
+    --royal-foreground: 28 25% 97%;
+    
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 28 25% 97%;
+    
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 43 74% 49%;
+    
+    /* Dark Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(0 0% 8%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(38 65% 55%) 100%);
+    --gradient-royal: linear-gradient(135deg, hsl(var(--royal)) 0%, hsl(215 80% 45%) 100%);
+    
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 28 25% 97%;
+    --sidebar-primary: 43 74% 49%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 28 25% 97%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 43 74% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  /* Hero Typography */
+  .hero-title {
+    @apply font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-none;
+  }
+  
+  .hero-subtitle {
+    @apply font-body text-base sm:text-lg md:text-xl font-light tracking-wide;
+  }
+  
+  /* Academic Section Headers */
+  .section-title {
+    @apply font-heading text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight;
+  }
+  
+  .section-subtitle {
+    @apply font-body text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed;
+  }
+  
+  /* Button Variants */
+  .btn-magnetic {
+    @apply relative overflow-hidden transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-hover;
+  }
+  
+  .btn-gold {
+    background: var(--gradient-accent);
+    @apply text-accent-foreground shadow-gold;
+  }
+  
+  .btn-royal {
+    background: var(--gradient-royal);
+    @apply text-royal-foreground;
+  }
+  
+  /* Interactive Elements */
+  .card-elegant {
+    @apply bg-card rounded-2xl p-6 shadow-elegant transition-all duration-300 hover:shadow-hover hover:-translate-y-1;
+  }
+  
+  .nav-link {
+    @apply relative font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:text-accent hover:after:w-full;
+  }
+  
+  /* Scroll Animations */
+  .reveal-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+    will-change: transform, opacity;
+  }
+  
+  .reveal-up.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .reveal-scale {
+    @apply opacity-0 scale-95 transition-all duration-600 ease-out;
+    will-change: transform, opacity;
+  }
+  
+  .reveal-scale.in-view {
+    @apply opacity-100 scale-100;
+  }
+  
+  /* Geometric Patterns */
+  .geometric-bg {
+    background: radial-gradient(circle at 20% 50%, hsla(var(--accent), 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsla(var(--royal), 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, hsla(var(--accent), 0.05) 0%, transparent 50%);
+  }
+  
+  /* Typography Utilities */
+  .text-gradient-gold {
+    background: var(--gradient-accent);
+    @apply bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-royal {
+    background: var(--gradient-royal);
+    @apply bg-clip-text text-transparent;
+  }
+}
