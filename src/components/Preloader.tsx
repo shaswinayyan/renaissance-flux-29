@@ -22,7 +22,7 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
           setTimeout(onComplete, 1200);
           return 100;
         }
-        return prev + Math.random() * 12 + 8;
+        return prev + Math.random() * 4 + 2;
       });
     }, 120);
 

@@ -32,31 +32,32 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "alexander@meridian.dev",
+      value: "shaswinayyan@gmail.com",
       description: "Best for detailed project discussions",
       primary: true
     },
     {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "linkedin.com/in/alexandermeridian",
-      description: "Professional networking & opportunities",
+      icon: Calendar,
+      label: "Schedule Call",
+      value: "calendly.com/shaswinayyan",
+      description: "Direct consultation",
       primary: false
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "github.com/alexandermeridian",
+      value: "github.com/shaswinayyan",
       description: "Open source collaborations",
       primary: false
     },
     {
-      icon: Calendar,
-      label: "Schedule Call",
-      value: "calendly.com/alexandermeridian",
-      description: "Direct consultation booking",
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "linkedin.com/in/shaswinayyan",
+      description: "Professional networking & opportunities",
       primary: true
-    }
+    },
+    
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -284,7 +285,7 @@ const Contact = () => {
               <MapPin className="w-8 h-8 mx-auto mb-4 text-accent" />
               <h3 className="font-heading text-lg font-medium mb-2">Location</h3>
               <p className="text-muted-foreground">
-                Based in New York<br />
+                Based in Tamil Nadu<br />
                 Available globally for remote work
               </p>
             </div>
@@ -303,7 +304,7 @@ const Contact = () => {
               <h3 className="font-heading text-lg font-medium mb-2">Availability</h3>
               <p className="text-muted-foreground">
                 Currently accepting projects<br />
-                Q2 2024 booking available
+                Available for innovative collaborations
               </p>
             </div>
           </div>

@@ -77,14 +77,14 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-8 lg:px-8 text-center">
         {/* Pre-loader effect */}
         <div className={cn(
           "transition-all duration-1000 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Name & Title */}
-          <div className="mb-8">
+          <div className="mb-8 mt-4">
             <h1 className="hero-title mb-6">
               <span className="text-gradient-gold">Shaswin</span>
               <br />
@@ -111,7 +111,7 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className={cn(
-            "flex flex-col sm:flex-row gap-4 justify-center mb-16 transition-all duration-1000 ease-out delay-500",
+            "flex flex-col sm:flex-row gap-4 justify-center mb-16 m-8 transition-all duration-1000 ease-out delay-500",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <Button variant="gold" size="hero" className="group">

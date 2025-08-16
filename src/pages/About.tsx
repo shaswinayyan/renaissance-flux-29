@@ -33,29 +33,35 @@ const About = () => {
 
   const timeline = [
     {
-      year: "2020-2024",
-      title: "Renaissance Education",
-      description: "Dual degree in Engineering & Liberal Arts, summa cum laude",
-      highlight: "Phi Beta Kappa"
-    },
-    {
-      year: "2022-2024",
-      title: "Quantitative Research",
-      description: "Developed algorithmic trading systems with 15%+ annual returns",
-      highlight: "Published Research"
+      year: "2021-2025",
+      title: "Mechatronics Engineering",
+      description: "Strong focus in Applied Math & Quantitative Analysis",
+      highlight: "Interdisciplinary Excellence"
     },
     {
       year: "2023-Present",
-      title: "Cybersecurity Consulting",
-      description: "Led penetration testing for Fortune 500 companies",
-      highlight: "CISSP Certified"
+      title: "BS in Data Science, IIT Madras",
+      description: "Specialization in Machine Learning, AI & Applied Statistics",
+      highlight: "Dual Degree Track"
+    },
+    {
+      year: "2023-Present",
+      title: "Full-Stack Development",
+      description: "Built and deployed scalable web apps using React & Next.js",
+      highlight: "IBM Certified"
+    },
+    {
+      year: "2023-Present",
+      title: "Cybersecurity Enthusiast",
+      description: "Led penetration testing on open-source projects, focusing on vulnerability assessment and mitigation",
+      highlight: "Google Certified"
     },
     {
       year: "2024-Present",
-      title: "Artistic Explorations",
-      description: "Digital art exhibitions and creative technology installations",
-      highlight: "Gallery Featured"
-    }
+      title: "Quantitative Research Learner",
+      description: "Studying financial models, time-series analysis, and algorithmic trading fundamentals",
+      highlight: "Self-Taught"
+    },
   ];
 
   const philosophies = [
@@ -132,13 +138,17 @@ const About = () => {
 
             <div className="reveal-up">
               <div className="relative">
-                <div className="aspect-square bg-gradient-accent rounded-2xl opacity-20 absolute inset-0 animate-float" />
+                <div className="bg-gradient-accent rounded-2xl opacity-20 absolute inset-0 animate-float h-auto lg:aspect-square max-h-[90vh]" />
                 <div className="relative z-10 p-8 text-center">
                   <Award className="w-16 h-16 mx-auto mb-4 text-accent" />
-                  <h3 className="text-xl font-heading font-medium mb-2">Recognition</h3>
-                  <p className="text-muted-foreground">
-                    Dean's List • Research Excellence • Innovation Awards
-                  </p>
+                  <h3 className="text-xl font-heading font-medium mb-2">Credentials & Learning Highlights</h3><br/>
+                  <ul className="text-muted-foreground text-left list-disc pl-10 space-y-2">
+                    <li>B.Tech in Mechatronics Engineering</li>
+                    <li>BS in Data Science</li>
+                    <li>Google Certified – Cybersecurity & Business Intelligence</li>
+                    <li>IBM Certified – Full Stack Software Developer</li>
+                    <li>Independent Learner – Quantitative Research & Finance</li>
+                  </ul>
                 </div>
               </div>
             </div>

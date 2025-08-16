@@ -6,26 +6,26 @@ const HighlightsSection = () => {
     {
       icon: Award,
       label: "Academic Excellence",
-      value: "Summa Cum Laude",
-      description: "Phi Beta Kappa, Dean's List"
+      value: "20+ Projects",
+      description: "Data Science @ IITM & Mechatronics @ PTU"
     },
     {
       icon: TrendingUp,
       label: "Quantitative Returns",
-      value: "15.7% Annual",
-      description: "Algorithmic trading systems"
+      value: "16.1% CAGR",
+      description: "Backtested equities strategy with ML momentum filters"
     },
     {
       icon: Users,
       label: "Impact Scale",
-      value: "50+ Companies",
-      description: "Cybersecurity consulting"
+      value: "15+ Clients Served",
+      description: "Across AI, Web, and Security domains"
     },
     {
       icon: Target,
-      label: "Project Success",
-      value: "$10M+ Value",
-      description: "Delivered across domains"
+      label: "Product Engineering",
+      value: "5+ MVPs Piloted",
+      description: "Rapid prototyping and testing in healthcare and tech domains"
     }
   ];
 

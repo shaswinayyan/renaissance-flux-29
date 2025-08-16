@@ -168,11 +168,11 @@ const Projects = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-royal" />
-                <span>5 Industries Impacted</span>
+                <span>3 Startup Collaborations</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent" />
-                <span>$10M+ Value Created</span>
+                <span>Cross-Disciplinary Reach</span>
               </div>
             </div>
           </div>

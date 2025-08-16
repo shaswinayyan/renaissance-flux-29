@@ -1,27 +1,37 @@
 import { Card } from "@/components/ui/card";
-
+import { ChartLine, Shield, ChevronsLeftRightEllipsis, Goal, DraftingCompass, BrainCircuit} from 'lucide-react';
 const DomainsSection = () => {
   const domains = [
     {
       title: "Quantitative Finance",
       description: "Algorithmic trading systems, risk management, and financial modeling with machine learning.",
-      icon: "📊"
+      icon: ChartLine
     },
     {
       title: "Cybersecurity",
       description: "Penetration testing, vulnerability research, and security architecture consulting.",
-      icon: "🛡️"
+      icon: Shield
     },
     {
-      title: "Creative Technology",
-      description: "Digital art installations, generative algorithms, and human-computer interaction.",
-      icon: "🎨"
+      title: "Full Stack Development",
+      description: "From UI/UX design to backend APIs, I build scalable, data-driven web applications.",
+      icon: ChevronsLeftRightEllipsis
     },
     {
       title: "Leadership & Strategy",
       description: "Technical team leadership, strategic planning, and interdisciplinary collaboration.",
-      icon: "🧭"
-    }
+      icon: Goal
+    },
+    {
+      title: "Product Engineering",
+      description: "Building end-to-end MVPs, optimizing UX flows, and shipping scalable SaaS platforms.",
+      icon: DraftingCompass
+    },
+    {
+      title: "AI & Data Science",
+      description: "Exploratory data analysis, model deployment, and turning data into actionable insights.",
+      icon: BrainCircuit
+    },
   ];
 
   return (
@@ -43,7 +53,7 @@ const DomainsSection = () => {
             >
               <Card className="card-elegant group h-full">
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="text-xl sm:text-2xl lg:text-3xl flex-shrink-0 mt-1">{domain.icon}</div>
+                  <domain.icon className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-3 sm:mb-4 text-accent group-hover:scale-110 transition-transform" />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-heading text-base sm:text-lg lg:text-xl font-medium mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                       {domain.title}
