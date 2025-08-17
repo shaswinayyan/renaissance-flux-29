@@ -15,7 +15,15 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footers";
-
+if (
+  typeof window !== "undefined" &&
+  !document.documentElement.classList.contains("dark")
+) {
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.classList.add("dark");
+  }
+}
 const queryClient = new QueryClient();
 
 function AppContent() {

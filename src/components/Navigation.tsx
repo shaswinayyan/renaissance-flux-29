@@ -6,7 +6,15 @@ import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    // ✅ Load theme from localStorage if available
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+    // Fallback: match system preference
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -23,6 +31,16 @@ const Navigation = () => {
     document.documentElement.classList.toggle("dark");
   };
 
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+  
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -36,7 +54,7 @@ const Navigation = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled
+        (scrolled || isOpen)
           ? "bg-background/95 backdrop-blur-xl shadow-elegant border-b border-border"
           : "bg-transparent"
       )}
