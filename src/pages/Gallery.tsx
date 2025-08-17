@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -9,15 +9,15 @@ const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const categories = [
+  const categories = useMemo(() => [
     { id: "all", label: "All", icon: Eye },
     { id: "digital-art", label: "Digital Art", icon: Palette },
     { id: "photography", label: "Photography", icon: Camera },
     { id: "music", label: "Music", icon: Music },
     { id: "creative-code", label: "Creative Code", icon: Code },
-  ];
+  ], []);
 
-  const galleryItems = [
+  const galleryItems = useMemo(() => [
     {
       id: 1,
       title: "Algorithmic Landscapes",
@@ -78,11 +78,13 @@ const Gallery = () => {
       inspiration: "The temporal nature of experience",
       featured: false
     }
-  ];
+  ], []);
 
-  const filteredItems = galleryItems.filter(item => 
-    selectedCategory === "all" || item.category === selectedCategory
-  );
+  const filteredItems = useMemo(() => {
+    return galleryItems.filter(item => 
+      selectedCategory === "all" || item.category === selectedCategory
+    );
+  }, [selectedCategory, galleryItems]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,12 +98,18 @@ const Gallery = () => {
       { threshold: 0.1 }
     );
 
-    document.querySelectorAll(".reveal-up").forEach((el) => {
+    const elements = document.querySelectorAll(".reveal-up");
+    elements.forEach((el) => {
       observer.observe(el);
     });
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      elements.forEach((el) => {
+        observer.unobserve(el);
+      });
+      observer.disconnect();
+    };
+  }, [filteredItems]);
 
   return (
     <div className="min-h-screen pt-20">
@@ -119,7 +127,7 @@ const Gallery = () => {
             <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Heart className="w-4 h-4 text-accent" />
-                <span>6 Collections</span>
+                <span>{galleryItems.length} Collections</span>
               </div>
               <div className="flex items-center gap-2">
                 <Palette className="w-4 h-4 text-accent" />
@@ -127,7 +135,7 @@ const Gallery = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4 text-accent" />
-                <span>Featured in Galleries</span>
+                <span>Through My Eyes</span>
               </div>
             </div>
           </div>
@@ -143,7 +151,10 @@ const Gallery = () => {
                 <Button
                   key={category.id}
                   variant={selectedCategory === category.id ? "gold" : "outline"}
-                  onClick={() => setSelectedCategory(category.id)}
+                  onClick={() => {
+                    setSelectedCategory(category.id);
+                    setSelectedItem(null);
+                  }}
                   className="flex items-center gap-2"
                 >
                   <category.icon className="w-4 h-4" />
@@ -161,12 +172,13 @@ const Gallery = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item, index) => (
               <div
-                key={item.id}
+                key={`${item.id}-${selectedCategory}`}
                 className={cn(
                   "reveal-up group cursor-pointer",
                   item.featured ? "md:col-span-2 lg:col-span-2" : ""
                 )}
                 style={{ animationDelay: `${index * 100}ms` }}
+                onClick={() => setSelectedItem(item)}
               >
                 <Card className={cn(
                   "h-full overflow-hidden transition-all duration-500 hover:shadow-hover hover:-translate-y-2",
