@@ -42,6 +42,10 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   if (isInitialLoading && location.pathname === "/") {
     return <Preloader onComplete={handlePreloaderComplete} />;
   }

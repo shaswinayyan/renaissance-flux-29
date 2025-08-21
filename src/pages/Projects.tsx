@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -8,17 +8,18 @@ import { cn } from "@/lib/utils";
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState("all");
 
-  const projectCategories = [
+  const projectCategories = useMemo(() => [
     { id: "all", label: "All Projects", icon: BarChart3 },
     { id: "finance", label: "Finance & Quant", icon: TrendingUp },
     { id: "cybersecurity", label: "Cybersecurity", icon: Shield },
     { id: "web", label: "Web Development", icon: Code },
     { id: "hardware", label: "Mechatronics", icon: Cpu },
     { id: "creative", label: "Creative Tech", icon: Paintbrush },
-  ];
+  ], []);
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 1,
       category: "finance",
@@ -104,18 +105,13 @@ const Projects = () => {
         audit: "#"
       }
     }
-  ];
+  ], []);
 
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  useEffect(() => {
-    if (activeCategory === "all") {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(projects.filter(p => p.category === activeCategory));
-    }
-  }, [activeCategory]);
+  const filteredProjects = useMemo(() => {
+    return activeCategory === "all" 
+      ? projects 
+      : projects.filter(p => p.category === activeCategory);
+  }, [activeCategory, projects]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,12 +125,18 @@ const Projects = () => {
       { threshold: 0.1 }
     );
 
-    document.querySelectorAll(".reveal-up").forEach((el) => {
+    const elements = document.querySelectorAll(".reveal-up");
+    elements.forEach((el) => {
       observer.observe(el);
     });
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      elements.forEach((el) => {
+        observer.unobserve(el);
+      });
+      observer.disconnect();
+    };
+  }, [filteredProjects]);
 
   const getStatusBadgeVariant = (status: string) => {
     switch (status) {
@@ -182,7 +184,14 @@ const Projects = () => {
       {/* Project Categories & Filter */}
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Tabs value={activeCategory} onValueChange={setActiveCategory} className="reveal-up">
+          <Tabs 
+            value={activeCategory} 
+            onValueChange={(value) => {
+              setActiveCategory(value);
+              setHoveredProject(null);
+            }} 
+            className="reveal-up"
+          >
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 h-auto p-1 bg-secondary/50">
               {projectCategories.map((category) => (
                 <TabsTrigger
@@ -206,11 +215,12 @@ const Projects = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
               <div
-                key={project.id}
+                key={`${project.id}-${activeCategory}`}
                 className={cn(
                   "reveal-up group cursor-pointer",
                   project.featured ? "md:col-span-2 lg:col-span-2" : ""
                 )}
+                style={{ animationDelay: `${index * 100}ms` }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
