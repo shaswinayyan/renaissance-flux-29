@@ -5,7 +5,7 @@
 .yarn/install-state.gz
 
 # Next.js
-/.next/
+/.next
 /out/
 
 # Production
@@ -39,8 +39,8 @@ next-env.d.ts
 # OS generated files
 Thumbs.db
 
-# Lock files (choose one)
-# package-lock.json  # Remove this line if you want to keep package-lock.json
+#Lock files (choose one)
+package-lock.json  # Remove this line if you want to keep package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
 # bun.lockb
