@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+// src/components/Footers.tsx
+import Link from "next/link";
 import { Github, Instagram, Twitter, Mail, Linkedin } from "lucide-react";
 
 const Footer = () => {
@@ -15,7 +16,7 @@ const Footer = () => {
               {['Home', 'About', 'Projects'].map((item) => (
                 <li key={item}>
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    href={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {item}
@@ -34,7 +35,7 @@ const Footer = () => {
               {['Blog', 'Gallery', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    href={`/${item.toLowerCase()}`}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {item}
@@ -54,11 +55,11 @@ const Footer = () => {
                 </h4>
                 <div className="flex space-x-4">
                   {[
-                    { icon: <Github className="w-5 h-5" />, url: "https://github.com" },
-                    { icon: <Twitter className="w-5 h-5" />, url: "https://twitter.com" },
-                    { icon: <Linkedin className="w-5 h-5" />, url: "https://linkedin.com" },
-                    { icon: <Instagram className="w-5 h-5" />, url: "https://instagram.com" },
-                    { icon: <Mail className="w-5 h-5" />, url: "mailto:contact@example.com" }
+                    { icon: <Github className="w-5 h-5" />, url: "https://github.com", label: "GitHub" },
+                    { icon: <Twitter className="w-5 h-5" />, url: "https://twitter.com", label: "Twitter" },
+                    { icon: <Linkedin className="w-5 h-5" />, url: "https://linkedin.com", label: "LinkedIn" },
+                    { icon: <Instagram className="w-5 h-5" />, url: "https://instagram.com", label: "Instagram" },
+                    { icon: <Mail className="w-5 h-5" />, url: "mailto:contact@example.com", label: "Email" }
                   ].map((social, index) => (
                     <a
                       key={index}
@@ -66,7 +67,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-full bg-muted hover:bg-primary/10 hover:text-primary transition-all duration-200 text-muted-foreground"
-                      aria-label={`${social.icon.type.displayName} profile`}
+                      aria-label={social.label}
                     >
                       {social.icon}
                     </a>
@@ -100,13 +101,13 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Shaswin Ayyan. All rights reserved.
           </p>
           <div className="flex space-x-6 order-1 md:order-2">
-            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition">
+            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition">
               Privacy
             </Link>
-            <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition">
+            <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition">
               Terms
             </Link>
-            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition">
+            <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition">
               Contact
             </Link>
           </div>

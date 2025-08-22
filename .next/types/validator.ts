@@ -5,71 +5,81 @@
 import type { AppRoutes, LayoutRoutes, ParamMap } from "./routes.js"
 import type { ResolvingMetadata, ResolvingViewport } from "next/dist/lib/metadata/types/metadata-interface.js"
 
-type PagesPageConfig = {
-  default: React.ComponentType<any> | ((props: any) => React.ReactNode | Promise<React.ReactNode> | never | void)
-  getStaticProps?: (context: any) => Promise<any> | any
-  getStaticPaths?: (context: any) => Promise<any> | any
-  getServerSideProps?: (context: any) => Promise<any> | any
-  getInitialProps?: (context: any) => Promise<any> | any
-  /**
-   * Segment configuration for legacy Pages Router pages.
-   * Validated at build-time by parsePagesSegmentConfig.
-   */
-  config?: {
-    amp?: boolean | 'hybrid' | string // necessary for JS
-    maxDuration?: number
-    runtime?: 'edge' | 'experimental-edge' | 'nodejs' | string // necessary unless config is exported as const
-    regions?: string[]
-  }
+type AppPageConfig<Route extends AppRoutes = AppRoutes> = {
+  default: React.ComponentType<{ params: Promise<ParamMap[Route]> } & any> | ((props: { params: Promise<ParamMap[Route]> } & any) => React.ReactNode | Promise<React.ReactNode> | never | void | Promise<void>)
+  generateStaticParams?: (props: { params: ParamMap[Route] }) => Promise<any[]> | any[]
+  generateMetadata?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingMetadata
+  ) => Promise<any> | any
+  generateViewport?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingViewport
+  ) => Promise<any> | any
+  metadata?: any
+  viewport?: any
+}
+
+type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
+  default: React.ComponentType<LayoutProps<Route>> | ((props: LayoutProps<Route>) => React.ReactNode | Promise<React.ReactNode> | never | void | Promise<void>)
+  generateStaticParams?: (props: { params: ParamMap[Route] }) => Promise<any[]> | any[]
+  generateMetadata?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingMetadata
+  ) => Promise<any> | any
+  generateViewport?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingViewport
+  ) => Promise<any> | any
+  metadata?: any
+  viewport?: any
 }
 
 
-
-
-
-
-// Validate ..\..\src\pages\About.tsx
+// Validate ..\..\src\app\about\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\About.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\about\\page.js")
+  handler satisfies AppPageConfig<"/about">
 }
 
-// Validate ..\..\src\pages\Blog.tsx
+// Validate ..\..\src\app\blog\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\Blog.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\blog\\page.js")
+  handler satisfies AppPageConfig<"/blog">
 }
 
-// Validate ..\..\src\pages\Contact.tsx
+// Validate ..\..\src\app\contact\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\Contact.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\contact\\page.js")
+  handler satisfies AppPageConfig<"/contact">
 }
 
-// Validate ..\..\src\pages\Gallery.tsx
+// Validate ..\..\src\app\gallery\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\Gallery.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\gallery\\page.js")
+  handler satisfies AppPageConfig<"/gallery">
 }
 
-// Validate ..\..\src\pages\Index.tsx
+// Validate ..\..\src\app\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\Index.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\page.js")
+  handler satisfies AppPageConfig<"/">
 }
 
-// Validate ..\..\src\pages\NotFound.tsx
+// Validate ..\..\src\app\projects\page.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\NotFound.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\projects\\page.js")
+  handler satisfies AppPageConfig<"/projects">
 }
 
-// Validate ..\..\src\pages\Projects.tsx
+
+
+
+
+
+
+// Validate ..\..\src\app\layout.tsx
 {
-  const handler = {} as typeof import("..\\..\\src\\pages\\Projects.js")
-  handler satisfies PagesPageConfig
+  const handler = {} as typeof import("..\\..\\src\\app\\layout.js")
+  handler satisfies LayoutConfig<"/">
 }
-
-
-
-
